@@ -3,14 +3,14 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>hu.unideb.inf</groupId>
-    <artifactId>homework-template-project<!-- TODO: replace "homework-template-project" with a suitable artifactId --></artifactId>
+    <artifactId>slide-maze</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <description><!-- TODO: a brief description of your project --></description>
+    <description>Slide maze game, where the goal is to get the ball to be in the goal labeled box.</description>
     <developers>
         <developer>
-            <name><!-- TODO: your full name --></name>
-            <email><!-- TODO: your email address --></email>
+            <name>Kasztl Richard</name>
+            <email>richardhun@mailbox.unideb.hu</email>
             <organization>Faculty of Informatics, University of Debrecen</organization>
             <organizationUrl>https://inf.unideb.hu/</organizationUrl>
         </developer>
@@ -24,9 +24,21 @@
         <jacoco.version>0.8.13</jacoco.version>
         <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
         <maven.surefire.version>3.5.3</maven.surefire.version>
-        <exec.mainClass><!-- TODO: the fully-qualified class name of your class that contains the main() method to launch the application --></exec.mainClass>
+        <exec.mainClass>CLISearch</exec.mainClass>
     </properties>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.19.0</version>
+        </dependency>
         <dependency>
             <groupId>hu.unideb.inf</groupId>
             <artifactId>homework-project-utils-2025</artifactId>
@@ -54,6 +66,12 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>26.0.2</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>
@@ -167,7 +185,15 @@
     </reporting>
     <repositories>
         <repository>
-            <id>github</id>
+            <id>github_fxutils</id>
+            <url>https://maven.pkg.github.com/INBPM0420L/homework-project-jfxutils</url>
+        </repository>
+        <repository>
+            <id>github_utils</id>
+            <url>https://maven.pkg.github.com/INBPM0420L/homework-project-utils-2025</url>
+        </repository>
+        <repository>
+            <id>github_packages</id>
             <url>https://maven.pkg.github.com/INBPM0420L/packages</url>
         </repository>
     </repositories>
