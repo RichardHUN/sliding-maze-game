@@ -15,6 +15,10 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
         this.playingSurface = new PlayingSurface("walls.json");
     }
 
+    public Position getBallPosition(){
+        return playingSurface.getBallPosition();
+    }
+
     /**
      * Checks if the game is won.
      * @return true if the ball is in the goal cell, false otherwise
