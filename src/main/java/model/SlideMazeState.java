@@ -1,5 +1,7 @@
 package model;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import puzzle.State;
 import puzzle.solver.BreadthFirstSearch;
 
@@ -7,12 +9,15 @@ import java.util.*;
 
 public class SlideMazeState implements puzzle.State<Directions.Direction>{
     private PlayingSurface playingSurface;
+    private static final Logger LOGGER = LogManager.getLogger();
 
     /**
      * Creates the state, its' playingSurface being read from {@code walls.json}.
      */
     public SlideMazeState() {
         this.playingSurface = new PlayingSurface("walls.json");
+        LOGGER.info("SlidingMazeState instantiated from walls.json. Ball position: {}, goal position: {}.",
+                playingSurface.getBallPosition(), playingSurface.getGoalPosition());
     }
 
     public Position getBallPosition(){
@@ -25,7 +30,11 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
      */
     @Override
     public boolean isSolved() {
-        return playingSurface.getGoalPosition().equals(playingSurface.getBallPosition());
+        boolean isSolved = playingSurface.getGoalPosition().equals(playingSurface.getBallPosition());
+        if(isSolved){
+            LOGGER.info("Game won.");
+        }
+        return isSolved;
     }
 
     /**
@@ -44,11 +53,11 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
     public SlideMazeState clone() {
         SlideMazeState copy;
         try {
-            copy = (SlideMazeState) super.clone(); // shallow copy
+            copy = (SlideMazeState) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
-        copy.playingSurface = this.playingSurface.clone(); // deep copy of the internal state
+        copy.playingSurface = this.playingSurface.clone();
         return copy;
     }
 
@@ -71,9 +80,12 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
     @Override
     public void makeMove(Directions.Direction direction) {
         if(!this.isLegalMove(direction)){
+            LOGGER.warn("Illegal move tried! Move: {}", direction);
             throw new IllegalArgumentException("Cannot move ball in the given direction" + direction);
         }
+        LOGGER.info("Ball moved {}.", direction);
         playingSurface.moveBall(direction);
+        LOGGER.info("New ball position is {}.", playingSurface.getBallPosition());
     }
 
     @Override
