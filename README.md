@@ -6,5 +6,5 @@ The goal of the game is to get the ball into the goal labeled cell.
 The ball can be moved in 4 directions: **up, down, right, left**.
 If the ball is moved in of direction, it moves in that directions, until it bumps into a wall.
 
-![startin maze](palya.png "The starting maze")
+![startin maze](playing_surface.png "The starting maze")
 ## Solution: RIGHT, DOWN, LEFT, DOWN, LEFT, UP, LEFT, DOWN, LEFT, UP, RIGHT, UP, RIGHT, UP, LEFT, DOWN, RIGHT, DOWN

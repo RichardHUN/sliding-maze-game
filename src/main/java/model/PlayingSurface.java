@@ -1,5 +1,5 @@
 package model;
-import model.persistence.PlayingSurfaceReader;
+import model.reading.PlayingSurfaceReader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +125,8 @@ public class PlayingSurface implements Cloneable{
      * <pre>{@code placeWall(new Position(0,0), Directions.RIGHT)}</pre>
      * is equivalent to
      * <pre>{@code placeWall(new Position(0,1), Directions.LEFT)}</pre>
+     * @param position the {@link Position} of the {@link Cell}
+     * @param side the side of the {@link Cell} that will be solidified
      */
     public void placeWall(Position position, Directions.Direction side){
         this.at(position).setCanMove(side, false);
@@ -138,16 +140,25 @@ public class PlayingSurface implements Cloneable{
                 .setCanMove(Directions.oppositeOf(side), false);
     }
 
+    /**
+     * Gives back the ball {@link Position}.
+     * @return the {@link Position} of the ball
+     */
     public Position getBallPosition() {
         return ballPosition;
     }
 
+    /**
+     * Gives back the {@link Position} of the goal.
+     * @return the {@link Position} of the goal
+     */
     public Position getGoalPosition() {
         return goalPosition;
     }
 
     /**
-     * @param position the coordinates of the wanted cell (x,y)<->(row,column)
+     * Gives back the {@link Cell} at the given {@link Position}
+     * @param position the coordinates of the wanted cell {@code (x,y)<->(row,column)}
      * @return the {@link Cell} at the given coordinate of the playingSurface
      */
     public Cell at(Position position){

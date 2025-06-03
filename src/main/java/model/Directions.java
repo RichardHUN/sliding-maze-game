@@ -7,6 +7,7 @@ import java.util.HashSet;
  * Stores the possible move directions/sides of walls, and relating methods.
  */
 public class Directions {
+
     /**
      * Stores the directions, in which moving the balls is possible, and the possible solid sides for {@link Cell}s.
      */
@@ -17,13 +18,20 @@ public class Directions {
         DOWN
     }
 
+    /**
+     * Gives back all the {@link Direction Directions}
+     * @return a set of all {@link Direction Directions}
+     */
     public static HashSet<Direction> directions(){
         return new HashSet<>(Arrays.asList(Directions.Direction.UP, Directions.Direction.DOWN,
                 Directions.Direction.LEFT, Directions.Direction.RIGHT));
     }
 
+
     /**
-     * @return the direction opposite to the direction given.
+     * Gives back the {@link Direction Direction} opposite of the given {code Direction}
+     * @param direction the {@link Direction Direction} whose opposite is needed
+     * @return the {@link Direction Direction} opposite of the given {@code Direction}
      */
     public static Direction oppositeOf(Direction direction){
         return switch (direction){

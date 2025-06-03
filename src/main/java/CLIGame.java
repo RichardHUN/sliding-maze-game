@@ -3,6 +3,9 @@ import model.SlideMazeState;
 
 import java.util.Scanner;
 
+/**
+ * CLI playable version of the game.
+ */
 public class CLIGame {
     public static void main(String[] args) {
         SlideMazeState state = new SlideMazeState();

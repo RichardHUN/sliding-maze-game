@@ -2,11 +2,11 @@ package model;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import puzzle.State;
-import puzzle.solver.BreadthFirstSearch;
-
 import java.util.*;
 
+/**
+ * Represent a state of the game.
+ */
 public class SlideMazeState implements puzzle.State<Directions.Direction>{
     private PlayingSurface playingSurface;
     private static final Logger LOGGER = LogManager.getLogger();
@@ -49,6 +49,11 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
         return directions;
     }
 
+    /**
+     * Gives back a new {@link SlideMazeState} object, with the same attributes as the
+     * original one, but on a different memory position.
+     * @return the clone of the object
+     */
     @Override
     public SlideMazeState clone() {
         SlideMazeState copy;

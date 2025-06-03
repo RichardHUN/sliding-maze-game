@@ -18,6 +18,12 @@ public class Cell implements Cloneable{
 
     /**
      * Creates a {@link Cell} with the given attributes.
+     * @param canMoveLeft specifies if the ball can move left from the {@code Cell}
+     * @param canMoveRight specifies if the ball can move right from the {@code Cell}
+     * @param canMoveUp specifies if the ball can move up from the {@code Cell}
+     * @param canMoveDown specifies if the ball can move down from the {@code Cell}
+     * @param hasBall specifies if the {@code Cell} has the ball
+     * @param isGoal specifies if the given {@code Cell} is a goal {@code Cell}
      */
     public Cell(boolean canMoveLeft, boolean canMoveRight, boolean canMoveUp, boolean canMoveDown, boolean hasBall, boolean isGoal) {
         this.canMoveLeft = canMoveLeft;
@@ -38,6 +44,7 @@ public class Cell implements Cloneable{
     }
 
     /**
+     * Checks if the {@code Cell} has the ball.
      * @return true if the given cell has the ball, false otherwise
      */
     public boolean hasBall() {
@@ -45,7 +52,8 @@ public class Cell implements Cloneable{
     }
 
     /**
-     * @return true if the given cell is a goal cell, false otherwise
+     * Checks if the {@code Cell} is a goal {@code Cell}.
+     * @return true if the given {@code Cell} is a goal {@code Cell}, false otherwise
      */
     public boolean isGoal() {
         return isGoal;

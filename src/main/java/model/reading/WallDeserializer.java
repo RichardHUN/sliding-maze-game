@@ -1,4 +1,4 @@
-package model.persistence;
+package model.reading;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -10,8 +10,18 @@ import model.Wall;
 
 import java.io.IOException;
 
+/**
+ * Contains a single method needed to deserialize a JSON file containing a {@link model.PlayingSurface PlayingSurface}.
+ */
 public class WallDeserializer extends JsonDeserializer<Wall> {
 
+    /**
+     * Creates a {@link Wall Wall} from a JSON object.
+     * @param parser the {@link JsonParser} used the parse through the file
+     * @param ctxt contextual information(not needed)
+     * @return a wall read from the file
+     * @throws IOException if an error occurs during the reading of the file
+     */
     @Override
     public Wall deserialize(JsonParser parser, DeserializationContext ctxt) throws IOException {
         JsonNode node = parser.getCodec().readTree(parser);
