@@ -13,10 +13,11 @@ import java.util.Objects;
 public class PlayingSurface implements Cloneable{
     private List<List<Cell>> playingSurface;
     private Position ballPosition;
-    private final Position goalPosition;
+    private Position goalPosition;
 
     /**
-     * Creates an empty, 7x7 {@link PlayingSurface}, with the ball on the (1,4) position, and the goal on (5,2).
+     * Creates an empty, 7x7 {@link PlayingSurface}, with the ball on the (1,4) position,
+     * and the goal on (5,2).
      */
     public PlayingSurface() {
         List<List<Cell>> table = new ArrayList<>(7);
@@ -37,7 +38,8 @@ public class PlayingSurface implements Cloneable{
     }
 
     /**
-     * Reads the {@link Wall}s from the given path, and creates a {@link PlayingSurface} from it.
+     * Reads the {@link Wall Walls} and the Start- and Goal positions
+     * from the given path, and creates a {@link PlayingSurface} from it.
      * @param path the path from which the JSon file is read (inside .resources).
      */
     public PlayingSurface(String path){
@@ -47,24 +49,36 @@ public class PlayingSurface implements Cloneable{
         this.goalPosition = p.goalPosition;
     }
 
-    @Override
-    public PlayingSurface clone() {
-        try {
-            PlayingSurface copy = (PlayingSurface) super.clone();
-            List<List<Cell>> surfaceCopy = new ArrayList<>();
-            for (List<Cell> row : this.playingSurface) {
-                List<Cell> rowCopy = new ArrayList<>();
-                for (Cell cell : row) {
-                    rowCopy.add(cell.clone());
-                }
-                surfaceCopy.add(rowCopy);
-            }
-            copy.playingSurface = surfaceCopy;
-            copy.ballPosition = Position.of(ballPosition);
-            return copy;
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Failed to clone PlayingSurface", e);
-        }
+    /**
+     * Gives back the {@link Cell} at the given {@link Position}
+     * @param position the coordinates of the wanted cell {@code (x,y)<->(row,column)}
+     * @return the {@link Cell} at the given coordinate of the playingSurface
+     */
+    public Cell at(Position position){
+        return playingSurface.get(position.x()).get(position.y());
+    }
+
+    /**
+     * Makes the {@link PlayingSurface PlayingSurfaces}' {@link Cell} at the given {@link Position}
+     * be the {@code Goal Cell}.
+     * @param position the {@link Position} of the {@link Cell} that will be the new goal
+     */
+    public void setGoal(Position position){
+        this.at(goalPosition).setGoal(false);
+        this.at(position).setGoal(true);
+        this.goalPosition = position;
+    }
+
+    /**
+     * Makes the {@link PlayingSurface PlayingSurfaces}' {@link Cell} at the given {@link Position}
+     * be the {@code Start Cell}.
+     * Also moves the ball to the given position.
+     * @param position the {@link Position} of the {@link Cell} that will be the new start
+     */
+    public void setStart(Position position){
+        this.at(ballPosition).setHasBall(false);
+        this.at(position).setHasBall(true);
+        this.ballPosition = position;
     }
 
     /**
@@ -156,13 +170,24 @@ public class PlayingSurface implements Cloneable{
         return goalPosition;
     }
 
-    /**
-     * Gives back the {@link Cell} at the given {@link Position}
-     * @param position the coordinates of the wanted cell {@code (x,y)<->(row,column)}
-     * @return the {@link Cell} at the given coordinate of the playingSurface
-     */
-    public Cell at(Position position){
-        return playingSurface.get(position.x()).get(position.y());
+    @Override
+    public PlayingSurface clone() {
+        try {
+            PlayingSurface copy = (PlayingSurface) super.clone();
+            List<List<Cell>> surfaceCopy = new ArrayList<>();
+            for (List<Cell> row : this.playingSurface) {
+                List<Cell> rowCopy = new ArrayList<>();
+                for (Cell cell : row) {
+                    rowCopy.add(cell.clone());
+                }
+                surfaceCopy.add(rowCopy);
+            }
+            copy.playingSurface = surfaceCopy;
+            copy.ballPosition = Position.of(ballPosition);
+            return copy;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Failed to clone PlayingSurface", e);
+        }
     }
 
     @Override

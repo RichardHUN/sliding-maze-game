@@ -54,32 +54,33 @@ class PlayingSurfaceTest {
     }
 
     @Test
-    void placeWall() {
+    void placeWallEachDirection() {
+        for (Directions.Direction direction: Directions.directions()){
+            PlayingSurface playingSurface = new PlayingSurface();
+            playingSurface.placeWall(playingSurface.getBallPosition(), direction);
+            assertFalse(playingSurface.canMove(direction));
+        }
+    }
+
+    @Test
+    void placeWallBothSides(){
         //Given
         PlayingSurface playingSurface = new PlayingSurface();
-        PlayingSurface playingSurface1;
 
         //When
         playingSurface.placeWall(playingSurface.getBallPosition(),
                 Directions.Direction.RIGHT);
-        playingSurface1 = playingSurface.clone();
-        playingSurface1.placeWall(
-                Position.of(playingSurface1.getBallPosition().x(), 6),
-                Directions.Direction.UP);
-        playingSurface1.moveBall(Directions.Direction.DOWN);
-        playingSurface1.moveBall(Directions.Direction.RIGHT);
-        playingSurface1.moveBall(Directions.Direction.UP);
-        playingSurface1.moveBall(Directions.Direction.LEFT);
+        playingSurface.placeWall(
+                Position.of(playingSurface.getBallPosition().x(), 6),
+                Directions.Direction.UP
+        );
+        playingSurface.moveBall(Directions.Direction.DOWN);
+        playingSurface.moveBall(Directions.Direction.RIGHT);
+        playingSurface.moveBall(Directions.Direction.UP);
+        playingSurface.moveBall(Directions.Direction.LEFT);
 
         //Then
-        assertFalse(playingSurface.canMove(Directions.Direction.RIGHT));
-        for(Directions.Direction direction: Directions.directions()){
-            if(direction.equals(Directions.Direction.RIGHT)){
-                break;
-            }
-            assertTrue(playingSurface.canMove(direction));
-        }
-        assertFalse(playingSurface1.canMove(Directions.Direction.LEFT));
+        assertFalse(playingSurface.canMove(Directions.Direction.LEFT));
         for(Directions.Direction direction: Directions.directions()){
             if(direction.equals(Directions.Direction.LEFT)){
                 break;

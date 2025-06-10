@@ -14,7 +14,7 @@ public class Cell implements Cloneable{
     private boolean canMoveUp;
     private boolean canMoveDown;
     private boolean hasBall;
-    private final boolean isGoal;
+    private boolean isGoal;
 
     /**
      * Creates a {@link Cell} with the given attributes.
@@ -79,6 +79,10 @@ public class Cell implements Cloneable{
             case UP -> canMoveUp();
             case DOWN -> canMoveDown();
         };
+    }
+
+    public void setGoal(boolean val){
+        this.isGoal = val;
     }
 
     private boolean canMoveLeft() {
