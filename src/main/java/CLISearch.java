@@ -3,11 +3,13 @@ import model.SlideMazeState;
 import puzzle.solver.BreadthFirstSearch;
 
 /**
- * Applies the {@link BreadthFirstSearch} on the {@link SlideMazeState} in command line..
+ * Applies the {@link BreadthFirstSearch} on the {@link SlideMazeState} in command line.
  */
 public class CLISearch{
-    public static void main(String[] args) {
+    /**
+     * Applies the {@link BreadthFirstSearch} on the {@link SlideMazeState}.
+     */
+    public static void main() {
         new BreadthFirstSearch<Directions.Direction>().solveAndPrintSolution(new SlideMazeState());
-        //new BreadthFirstSearch<Directions.Direction>().solve(new SlideMazeState());
     }
 }

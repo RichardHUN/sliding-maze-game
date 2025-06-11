@@ -1,5 +1,7 @@
 package model;
 import model.reading.PlayingSurfaceReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.Objects;
  * The playingSurface is a matrix, it stores {@link Cell}s with (x,y) coordinates, (0,0) being the top left cell.
  */
 public class PlayingSurface implements Cloneable{
+    private static final Logger LOGGER = LogManager.getLogger();
     private List<List<Cell>> playingSurface;
     private Position ballPosition;
     private Position goalPosition;
@@ -82,6 +85,7 @@ public class PlayingSurface implements Cloneable{
     }
 
     /**
+     * Checks if the ball can move in the given {@link model.Directions.Direction Direction}.
      * @param direction the {@link model.Directions.Direction Direction} in which the check will happen
      * @return false, if there is a wall directly next to the ball
      * in the given direction, true otherwise.
@@ -170,6 +174,23 @@ public class PlayingSurface implements Cloneable{
         return goalPosition;
     }
 
+    /**
+     * Gives back the height of the {@link PlayingSurface}.
+     * {@code (max x coordinate + 1)}
+     * @return the number of rows in the {@link PlayingSurface}
+     */
+    public int getPlayingSurfaceHeight(){
+        return this.playingSurface.size();
+    }
+
+    /**
+     * Gives back the width of the {@link PlayingSurface}.
+     * @return the number of columns in a row of the {@link PlayingSurface}
+     */
+    public int getPlayingSurfaceWidth(){
+        return this.playingSurface.getFirst().size();
+    }
+
     @Override
     public PlayingSurface clone() {
         try {
@@ -186,6 +207,7 @@ public class PlayingSurface implements Cloneable{
             copy.ballPosition = Position.of(ballPosition);
             return copy;
         } catch (CloneNotSupportedException e) {
+            LOGGER.error("Could not clone PlayingSurface.{}{}", System.lineSeparator(), e);
             throw new RuntimeException("Failed to clone PlayingSurface", e);
         }
     }
@@ -224,7 +246,7 @@ public class PlayingSurface implements Cloneable{
             }
             table.append(row).append("\n");
 
-            if (i != 6) {//sorok közti vonal
+            if (i != 6) {//line between rows
                 row = new StringBuilder();
                 for (int m = 0; m < 15; m++) {
                     if (m % 2 == 0) {

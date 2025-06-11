@@ -1,5 +1,8 @@
 package model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Objects;
 
 /**
@@ -9,6 +12,7 @@ import java.util.Objects;
  * the given side.
  */
 public class Cell implements Cloneable{
+    private static final Logger LOGGER = LogManager.getLogger();
     private boolean canMoveLeft;
     private boolean canMoveRight;
     private boolean canMoveUp;
@@ -39,6 +43,7 @@ public class Cell implements Cloneable{
         try {
             return (Cell) super.clone();
         } catch (CloneNotSupportedException e) {
+            LOGGER.error("Could not clone Cell.{}{}", System.lineSeparator(), e);
             throw new RuntimeException(e);
         }
     }
@@ -81,6 +86,10 @@ public class Cell implements Cloneable{
         };
     }
 
+    /**
+     * Can be used to change if the {@link Cell} is a goal cell or not.
+     * @param val {@code true} to make the {@link Cell} a goal cell
+     */
     public void setGoal(boolean val){
         this.isGoal = val;
     }
@@ -102,7 +111,7 @@ public class Cell implements Cloneable{
     }
 
     /**
-     * Solidifes/unsolidifies the wall of the cell in the given {@link model.Directions.Direction Direction}.
+     * Solidifies/unsolidifies the wall of the cell in the given {@link model.Directions.Direction Direction}.
      * The ball can pass through soft walls, but it can't pass through solid walls.
      * @param direction the side of the cell which will be modified
      * @param canMove true for solid walls, false for soft walls
@@ -113,7 +122,7 @@ public class Cell implements Cloneable{
             case RIGHT -> setCanMoveRight(canMove);
             case UP -> setCanMoveUp(canMove);
             case DOWN -> setCanMoveDown(canMove);
-        };
+        }
     }
 
     private void setCanMoveLeft(boolean canMoveLeft) {

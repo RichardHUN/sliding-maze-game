@@ -5,7 +5,7 @@
                      target="SYSTEM_OUT">
                 <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
             </Console>
-            <File name="FileLogger" fileName="src/main/logs/log.log" append="false">
+            <File name="FileLogger" fileName="logs/log.log" append="false">
                 <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
             </File>
     </Appenders>

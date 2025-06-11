@@ -1,41 +1,80 @@
 import model.Directions;
+import model.PlayableSlideMazeGame;
 import model.SlideMazeState;
 
 import java.util.Scanner;
 
 /**
  * CLI playable version of the game.
+ * Implement {@link PlayableSlideMazeGame}.
  */
-public class CLIGame {
-    public static void main(String[] args) {
-        SlideMazeState state = new SlideMazeState();
-        Scanner scanner = new Scanner(System.in);
-        String line;
+public class CLIGame implements PlayableSlideMazeGame {
+    private static final Scanner scanner = new Scanner(System.in);
 
-        System.out.println(state);
+    /**
+     * Request all needed information from the console,
+     * and prints all relevant information to the console.
+     */
+    public static void main() {
+        CLIGame game = new CLIGame();
+        game.init();
         while(scanner.hasNextLine()){
-            line = scanner.nextLine();
+            String line = scanner.nextLine();
             switch (line.toLowerCase()){
                 case "up":
-                    state.makeMove(Directions.Direction.UP);
+                    game.makeMove(Directions.Direction.UP);
                     break;
                 case "down":
-                    state.makeMove(Directions.Direction.DOWN);
+                    game.makeMove(Directions.Direction.DOWN);
                     break;
                 case "right":
-                    state.makeMove(Directions.Direction.RIGHT);
+                    game.makeMove(Directions.Direction.RIGHT);
                     break;
                 case "left":
-                    state.makeMove(Directions.Direction.LEFT);
+                    game.makeMove(Directions.Direction.LEFT);
                     break;
                 default:
                     System.out.println("No such direction: " + line);
             }
-            System.out.println(state);
-            if(state.isSolved()){
-                System.out.println("You won!");
-                return;
+        }
+    }
+
+    /**
+     * Initializes the game.
+     * Asks for the name of the player, sets the player name in the {@link SlideMazeState game state},
+     * and prints tha starting state.
+     */
+    @Override
+    public void start() {
+        System.out.println("Your name:");
+        state.setPlayerName(scanner.nextLine());
+        System.out.println(state);
+        System.out.println("Next move:");
+    }
+
+    /**
+     * Prints the new state to the console.
+     */
+    @Override
+    public void afterMove() {
+        System.out.println(state);
+        System.out.println("Next move:");
+    }
+
+    /**
+     * Prints the number of steps taken to the console, restart the game if asked for.
+     */
+    @Override
+    public void gameOver() {
+        System.out.println("You won!");
+        System.out.println("Number of steps taken: " + state.getNrOfSteps());
+        System.out.println("Type \"restart\" to play again!");
+        while (scanner.hasNextLine()){
+            String line = scanner.nextLine();
+            if (line.equalsIgnoreCase("restart")){
+                break;
             }
         }
+        main();
     }
 }

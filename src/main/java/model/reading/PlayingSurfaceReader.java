@@ -1,10 +1,6 @@
 package model.reading;
 
-import model.PlayingSurface;
-import model.PlayingSurfaceData;
-import model.Wall;
-
-import java.util.List;
+import model.*;
 
 /**
  * Contains a single method needed to read {@link PlayingSurface PlayingSurface} from file.
@@ -22,10 +18,13 @@ public class PlayingSurfaceReader {
 
         var playingSurface = new PlayingSurface();
 
-        playingSurface.setStart(playingSurfaceData.getStartPosition());
-        playingSurface.setGoal(playingSurfaceData.getGoalPosition());
-        for(Wall wall: playingSurfaceData.getWalls()){
-            playingSurface.placeWall(wall.position(), wall.side());
+        playingSurface.setStart(playingSurfaceData.startPosition());
+        playingSurface.setGoal(playingSurfaceData.goalPosition());
+
+        for (Wall wall : playingSurfaceData.walls()) {
+            Position position = wall.position();
+            Directions.Direction side = wall.side();
+            playingSurface.placeWall(position, side);
         }
 
         return playingSurface;

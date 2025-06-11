@@ -8,12 +8,12 @@ class PlayingSurfaceTest {
 
     @Test
     void testClone() {
-        PlayingSurface playingSurface1 = new PlayingSurface("walls.json");
+        PlayingSurface playingSurface1 = new PlayingSurface("playingSurface.json");
         PlayingSurface playingSurface2 = playingSurface1.clone();
 
-        assertTrue(playingSurface1 != playingSurface2);
-        assertTrue(playingSurface1.getClass().equals(playingSurface2.getClass()));
-        assertTrue(playingSurface2.equals(playingSurface1));
+        assertNotSame(playingSurface1, playingSurface2);
+        assertEquals(playingSurface1.getClass(), playingSurface2.getClass());
+        assertEquals(playingSurface2, playingSurface1);
     }
 
     @Test

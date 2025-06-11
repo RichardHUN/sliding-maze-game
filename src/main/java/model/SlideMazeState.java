@@ -6,20 +6,39 @@ import java.util.*;
 
 /**
  * Represent a state of the game.
+ * Contains the {@link PlayingSurface}, the name of the player and the number of steps taken already.
+ * Implements {@link puzzle.State}, with moves being represented by {@link model.Directions.Direction}.
  */
 public class SlideMazeState implements puzzle.State<Directions.Direction>{
     private PlayingSurface playingSurface;
+    private String playerName;
+    private int nrOfSteps;
     private static final Logger LOGGER = LogManager.getLogger();
 
     /**
-     * Creates the state, its' playingSurface being read from {@code walls.json}.
+     * Creates the state, its {@link PlayingSurface} being read from {@code playingSurface.json}.
+     * Initializes the number of steps taken to zero and the player name to {@code no name given}.
      */
     public SlideMazeState() {
-        this.playingSurface = new PlayingSurface("walls.json");
-        LOGGER.info("SlidingMazeState instantiated from walls.json. Ball position: {}, goal position: {}.",
+        initializeState();
+    }
+
+    public void resetToInitialState() {
+        initializeState();
+    }
+
+    private void initializeState(){
+        this.playingSurface = new PlayingSurface("playingSurface.json");
+        this.playerName = "no name given";
+        this.nrOfSteps = 0;
+        LOGGER.info("SlidingMazeState instantiated from playingSurface.json. Ball position: {}, goal position: {}.",
                 playingSurface.getBallPosition(), playingSurface.getGoalPosition());
     }
 
+    /**
+     * Gives back the current {@link Position} of the ball.
+     * @return the {@link Position} of the ball
+     */
     public Position getBallPosition(){
         return playingSurface.getBallPosition();
     }
@@ -60,6 +79,7 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
         try {
             copy = (SlideMazeState) super.clone();
         } catch (CloneNotSupportedException e) {
+            LOGGER.error("Could not clone SlideMazeState.{}{}", System.lineSeparator(), e);
             throw new RuntimeException(e);
         }
         copy.playingSurface = this.playingSurface.clone();
@@ -86,11 +106,63 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
     public void makeMove(Directions.Direction direction) {
         if(!this.isLegalMove(direction)){
             LOGGER.warn("Illegal move tried! Move: {}", direction);
-            throw new IllegalArgumentException("Cannot move ball in the given direction" + direction);
+            return;
         }
-        LOGGER.info("Ball moved {}.", direction);
+        nrOfSteps++;
+        LOGGER.info("Ball moved {}. Number of steps taken: {}", direction, nrOfSteps);
         playingSurface.moveBall(direction);
         LOGGER.info("New ball position is {}.", playingSurface.getBallPosition());
+    }
+
+    /**
+     * Gives back the height of the {@link PlayingSurface} stored in the {@link SlideMazeState game state}.
+     * {@code (max x coordinate + 1)}
+     * @return the number of rows in the {@link PlayingSurface}
+     */
+    public int getPlayingSurfaceHeight(){
+        return this.playingSurface.getPlayingSurfaceHeight();
+    }
+
+    /**
+     * Gives back the width of the {@link PlayingSurface} stored in the {@link SlideMazeState game state}.
+     * @return the number of columns in a row of the {@link PlayingSurface}
+     */
+    public int getPlayingSurfaceWidth(){
+        return this.playingSurface.getPlayingSurfaceWidth();
+    }
+
+    /**
+     * Gives back the number of steps taken until the moment it's called.
+     * @return the number of steps taken
+     */
+    public int getNrOfSteps() {
+        return nrOfSteps;
+    }
+
+    /**
+     * Gives back the name of the current player.
+     * @return the name of the player
+     */
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    /**
+     * Sets the name of the current player.
+     * @param playerName the name of the player
+     */
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    /**
+     * Gives back the {@link Cell} at the given {@link Position} of the {@link PlayingSurface}
+     * stored in the {@link SlideMazeState game state}.
+     * @param position the {@link Position} of the requested {@link Cell}
+     * @return the {@link Cell} at the given {@link Position}
+     */
+    public Cell cellAt(Position position){
+        return playingSurface.at(position);
     }
 
     @Override

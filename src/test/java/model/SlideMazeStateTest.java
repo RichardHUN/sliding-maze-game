@@ -126,9 +126,9 @@ class SlideMazeStateTest {
         SlideMazeState state1 = new SlideMazeState();
         SlideMazeState state2 = state1.clone();
 
-        assertTrue(state1 != state2);
-        assertTrue(state1.getClass().equals(state2.getClass()));
-        assertTrue(state2.equals(state1));
+        assertNotSame(state1, state2);
+        assertEquals(state1.getClass(), state2.getClass());
+        assertEquals(state2, state1);
     }
 
 }

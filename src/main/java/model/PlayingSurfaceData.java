@@ -2,32 +2,49 @@ package model;
 
 import java.util.List;
 
-public class PlayingSurfaceData {
-    private final Position goalPosition;
-    private final Position startPosition;
-    private final List<Wall> walls;
-    private final int length;
-
-    public PlayingSurfaceData(Position startPosition, Position goalPosition, List<Wall> walls) {
-        this.goalPosition = goalPosition;
-        this.startPosition = startPosition;
-        this.walls = walls;
-        this.length = walls.toArray().length + 2;
+/**
+ * Represents the data read from file. Is used to create the {@link PlayingSurface}.
+ */
+public record PlayingSurfaceData(Position startPosition, Position goalPosition, List<Wall> walls) {
+    /**
+     * Creates a new {@link PlayingSurfaceData} with the given parameters.
+     * Sets the length attribute to the length of {@code walls} + 2.
+     *
+     * @param startPosition the start {@link Position} of the ball
+     * @param goalPosition  the goal {@link Position}
+     * @param walls         all walls needed to be placed
+     */
+    public PlayingSurfaceData {
     }
 
-    public Position getGoalPosition() {
+    /**
+     * Gives back the {@link Position} of the goal.
+     *
+     * @return the {@link Position} of the goal
+     */
+    @Override
+    public Position goalPosition() {
         return goalPosition;
     }
 
-    public Position getStartPosition() {
+    /**
+     * Gives back the start {@link Position}.
+     *
+     * @return the start {@link Position}.
+     */
+    @Override
+    public Position startPosition() {
         return startPosition;
     }
 
-    public List<Wall> getWalls() {
+    /**
+     * Gives back the list of {@link Wall walls} to be placed.
+     *
+     * @return list of {@link Wall walls}
+     */
+    @Override
+    public List<Wall> walls() {
         return walls;
     }
 
-    public int getLength() {
-        return length;
-    }
 }
