@@ -11,4 +11,28 @@ The ball can be moved in 4 directions: **up, down, right, left**.
 If the ball is moved in any of the directions, it moves in that direction, until it bumps into a wall.
 
 ![startin maze](playing_surface.png "The starting maze")
-## Solution: RIGHT, DOWN, LEFT, DOWN, LEFT, UP, LEFT, DOWN, LEFT, UP, RIGHT, UP, RIGHT, UP, LEFT, DOWN, RIGHT, DOWN
+## [Solution](winning_moves): RIGHT, DOWN, LEFT, DOWN, LEFT, UP, LEFT, DOWN, LEFT, UP, RIGHT, UP, RIGHT, UP, LEFT, DOWN, RIGHT, DOWN
+
+## How to Run
+```bash
+mvn clean install
+```
+
+**CLI**
+```bash
+mvn exec:java -Dexec.mainClass="CLIGame"
+```
+
+**BFS**
+```bash
+mvn exec:java -Dexec.mainClass="CLISearch"
+```
+
+**GUI version**
+```bash
+mvn exec:java -Dexec.mainClass="SlideMazeGame"
+```
+or just
+```bash
+mvn exec:java
+```
