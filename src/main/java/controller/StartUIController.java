@@ -36,7 +36,7 @@ public class StartUIController implements Initializable {
         startButton.disableProperty().bind(textField.textProperty().isEmpty());
     }
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(StartUIController.class);
     private final SlideMazeApplication application = new SlideMazeApplication();
 
     /**

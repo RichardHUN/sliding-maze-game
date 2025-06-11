@@ -24,7 +24,7 @@ import java.io.IOException;
  * Implements the scenes.
  */
 public class SlideMazeApplication extends javafx.application.Application {
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(SlideMazeApplication.class);
 
     /**
      * Starts the game with UI.

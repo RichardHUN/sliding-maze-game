@@ -16,7 +16,7 @@ import java.util.List;
  * Contains a single method for reading a {@link model.PlayingSurface PlayingSurface} from file.
  */
 public class JsonReader {
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(JsonReader.class);
     /**
      * Reads the {@link PlayingSurfaceData} from file.
      * @param pathInResources the relative path in the resources folder of the json file

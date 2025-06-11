@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class LeaderBoardController implements Initializable {
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(LeaderBoardController.class);
     SlideMazeApplication application = new SlideMazeApplication();
     @FXML
     ScrollPane scrollPane;

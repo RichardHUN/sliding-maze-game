@@ -15,7 +15,7 @@ import java.util.List;
 public class LeaderBoardManager {
     private final ObjectMapper objectMapper;
     private final File file;
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(LeaderBoardManager.class);
 
     private static LeaderBoardManager instance = null;
 

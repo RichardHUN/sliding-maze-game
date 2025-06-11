@@ -13,7 +13,7 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
     private PlayingSurface playingSurface;
     private String playerName;
     private int nrOfSteps;
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(SlideMazeState.class);
 
     /**
      * Creates the state, its {@link PlayingSurface} being read from {@code playingSurface.json}.
@@ -64,7 +64,6 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
     public Set<Directions.Direction> getLegalMoves() {
         HashSet<Directions.Direction> directions = Directions.directions();
         directions.removeIf(direction -> !this.isLegalMove(direction));
-        //System.out.println(directions);
         return directions;
     }
 

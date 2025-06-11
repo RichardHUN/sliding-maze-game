@@ -12,7 +12,7 @@ import java.util.Objects;
  * the given side.
  */
 public class Cell implements Cloneable{
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(Cell.class);
     private boolean canMoveLeft;
     private boolean canMoveRight;
     private boolean canMoveUp;

@@ -13,7 +13,7 @@ import java.util.Objects;
  * The playingSurface is a matrix, it stores {@link Cell}s with (x,y) coordinates, (0,0) being the top left cell.
  */
 public class PlayingSurface implements Cloneable{
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(PlayingSurface.class);
     private List<List<Cell>> playingSurface;
     private Position ballPosition;
     private Position goalPosition;
@@ -124,7 +124,6 @@ public class PlayingSurface implements Cloneable{
                 if(i == 6){
                     placeWall(new Position(i,j), Directions.Direction.DOWN);
                 }
-                //System.out.println(i + " " + j + " " + this.at(Position.of(i,j)).canMoveLeft());
             }
         }
     }

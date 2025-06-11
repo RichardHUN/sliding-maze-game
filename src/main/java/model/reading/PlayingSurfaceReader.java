@@ -13,7 +13,6 @@ public class PlayingSurfaceReader {
      * @return the {@link PlayingSurface PlayingSurface} read from the file
      */
     public static PlayingSurface readPlayingSurface(String path){
-        //List<Wall> walls = JsonReader.readJsonFromResources(path);
         PlayingSurfaceData playingSurfaceData = JsonReader.readJsonFromResources(path);
 
         var playingSurface = new PlayingSurface();

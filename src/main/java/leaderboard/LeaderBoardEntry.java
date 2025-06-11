@@ -42,9 +42,6 @@ public class LeaderBoardEntry {
 
     @Override
     public String toString() {
-        return "LeaderBoardEntry{" +
-                "playerName='" + playerName + '\'' +
-                ", nrOfSteps=" + nrOfSteps +
-                '}';
+        return playerName + ": " + nrOfSteps;
     }
 }

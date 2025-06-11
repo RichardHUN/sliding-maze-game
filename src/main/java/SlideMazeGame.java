@@ -8,7 +8,7 @@ public class SlideMazeGame {
     /**
      * Starts the {@link SlideMazeApplication}.
      */
-    public static void main() {
+    public static void main(String[] args) {
         Application.launch(SlideMazeApplication.class);
     }
 }

@@ -21,7 +21,7 @@ public class GameUIController implements PlayableSlideMazeGame {
     private final SlideMazeApplication application = new SlideMazeApplication();
     @FXML
     private GridPane grid = new GridPane();
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(GameUIController.class);
     private Circle gameBall;
 
     /**
