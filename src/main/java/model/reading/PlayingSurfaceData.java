@@ -1,4 +1,8 @@
-package model;
+package model.reading;
+
+import model.PlayingSurface;
+import model.Position;
+import model.Wall;
 
 import java.util.List;
 

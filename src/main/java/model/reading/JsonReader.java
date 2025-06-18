@@ -2,7 +2,6 @@ package model.reading;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.PlayingSurfaceData;
 import model.Position;
 import model.Wall;
 import org.apache.logging.log4j.LogManager;

@@ -8,7 +8,11 @@ import model.*;
 public class PlayingSurfaceReader {
     /**
      * Reads a {@link PlayingSurface PlayingSurface} from file.
-     * The JSON file should contain an array, the first object being the start
+     * The JSON file should contain an array, the first object being the
+     * position of the start cell, the second one being the position of
+     * the goal cell, and the rest of the objects each should describe
+     * a wall: the position of a neighboring cell, and the {@link model.Directions.Direction}
+     * side on which this cell has the wall.
      * @param path path of the file(inside the resources folder)
      * @return the {@link PlayingSurface PlayingSurface} read from the file
      */

@@ -30,21 +30,10 @@ public class CLIGame implements PlayableSlideMazeGame {
         game.init();
         while(scanner.hasNextLine()){
             String line = scanner.nextLine();
-            switch (line.toLowerCase()){
-                case "up":
-                    game.makeMove(Directions.Direction.UP);
-                    break;
-                case "down":
-                    game.makeMove(Directions.Direction.DOWN);
-                    break;
-                case "right":
-                    game.makeMove(Directions.Direction.RIGHT);
-                    break;
-                case "left":
-                    game.makeMove(Directions.Direction.LEFT);
-                    break;
-                default:
-                    System.out.println("No such direction: " + line);
+            try {
+                game.makeMove(Directions.Direction.valueOf(line.toUpperCase()));
+            } catch (IllegalArgumentException e) {
+                System.out.println("No such direction: " + line);
             }
         }
     }
