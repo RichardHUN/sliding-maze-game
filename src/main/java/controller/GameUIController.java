@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -46,6 +47,16 @@ public class GameUIController implements PlayableSlideMazeGame {
     @Override
     public void gameOver() {
         application.showEndScene((Stage)grid.getScene().getWindow(), state.getNrOfSteps());
+    }
+
+    /**
+     * Gets called when the restart button is pressed.
+     * Restarts the game, redirects to the start UI.
+     * @param event the {@link ActionEvent} triggered by the button press
+     */
+    public void restartButtonPressed(ActionEvent event) {
+        Stage stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
+        application.start(stage);
     }
 
     /**

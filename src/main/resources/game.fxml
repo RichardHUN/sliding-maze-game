@@ -17,6 +17,7 @@
                   <Button layoutX="275.0" layoutY="49.0" mnemonicParsing="false" onAction="#downButtonPressed" text="Down" textAlignment="CENTER" />
                   <Button layoutX="283.0" layoutY="1.0" mnemonicParsing="false" onAction="#upButtonPressed" text="Up" />
                   <Button layoutX="322.0" layoutY="25.0" mnemonicParsing="false" onAction="#rightButtonPressed" text="Right" />
+                  <Button layoutX="533.0" layoutY="13.0" mnemonicParsing="false" onAction="#restartButtonPressed" text="Restart" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="598.0">
