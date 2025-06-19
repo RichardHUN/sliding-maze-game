@@ -1,3 +1,5 @@
+package slide_maze_game;
+
 import model.Directions;
 import model.SlideMazeState;
 import puzzle.solver.BreadthFirstSearch;

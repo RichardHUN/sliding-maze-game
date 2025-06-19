@@ -20,17 +20,17 @@ mvn clean install
 
 **CLI**
 ```bash
-mvn exec:java -Dexec.mainClass="CLIGame"
+mvn exec:java -Dexec.mainClass="slide_maze_game.CLIGame"
 ```
 
 **BFS**
 ```bash
-mvn exec:java -Dexec.mainClass="CLISearch"
+mvn exec:java -Dexec.mainClass="slide_maze_game.CLISearch"
 ```
 
 **GUI version**
 ```bash
-mvn exec:java -Dexec.mainClass="SlideMazeGame"
+mvn exec:java -Dexec.mainClass="slide_maze_game.SlideMazeGame"
 ```
 or just
 ```bash

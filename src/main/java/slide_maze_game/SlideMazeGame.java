@@ -1,3 +1,5 @@
+package slide_maze_game;
+
 import controller.SlideMazeApplication;
 import javafx.application.Application;
 

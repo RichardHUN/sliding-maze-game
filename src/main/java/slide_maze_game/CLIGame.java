@@ -1,3 +1,5 @@
+package slide_maze_game;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import leaderboard.LeaderBoardEntry;

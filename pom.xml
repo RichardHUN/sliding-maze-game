@@ -24,7 +24,7 @@
         <jacoco.version>0.8.13</jacoco.version>
         <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
         <maven.surefire.version>3.5.3</maven.surefire.version>
-        <exec.mainClass>SlideMazeGame</exec.mainClass>
+        <exec.mainClass>slide_maze_game.SlideMazeGame</exec.mainClass>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
