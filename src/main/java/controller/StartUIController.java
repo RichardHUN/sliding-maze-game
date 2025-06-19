@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,6 +25,8 @@ public class StartUIController implements Initializable {
     @FXML
     private Button startButton;
     @FXML
+    private Button leaderboardButton;
+    @FXML
     private TextField textField;
 
     /**
@@ -34,6 +37,9 @@ public class StartUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         startButton.disableProperty().bind(textField.textProperty().isEmpty());
+        if ( !new File("leaderboard/leaderboard.json").exists() ) {
+            leaderboardButton.disableProperty().set(true);
+        }
     }
 
     private static final Logger LOGGER = LogManager.getLogger(StartUIController.class);

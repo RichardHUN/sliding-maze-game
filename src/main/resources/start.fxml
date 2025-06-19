@@ -8,6 +8,6 @@
    <children>
       <Button fx:id="startButton" layoutX="262.0" layoutY="229.0" mnemonicParsing="false" onAction="#startButtonPressed" text="Start Game" />
       <TextField fx:id="textField" layoutX="165.0" layoutY="173.0" prefHeight="26.0" prefWidth="269.0" promptText="Your name" />
-      <Button layoutX="244.0" layoutY="274.0" mnemonicParsing="false" onAction="#leaderBoardButtonClicked" text="Show leaderboard" />
+      <Button fx:id="leaderboardButton" layoutX="244.0" layoutY="274.0" mnemonicParsing="false" onAction="#leaderBoardButtonClicked" text="Show leaderboard" />
    </children>
 </AnchorPane>

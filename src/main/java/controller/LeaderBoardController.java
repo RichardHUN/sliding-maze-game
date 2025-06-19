@@ -47,6 +47,10 @@ public class LeaderBoardController implements Initializable {
         } catch (IOException e) {
             LOGGER.error("Could not open leaderboard/leaderboard.json.{}{}", System.lineSeparator(), e);
             throw new RuntimeException(e);
+        } catch (Exception e) {
+            LOGGER.error("Error occurred when trying to open leaderboard/leaderboard.json.{}{}",
+                    System.lineSeparator(), e);
+            throw new RuntimeException(e);
         }
 
         leaderboard.stream()
