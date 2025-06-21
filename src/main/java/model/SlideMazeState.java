@@ -68,24 +68,6 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
     }
 
     /**
-     * Gives back a new {@link SlideMazeState} object, with the same attributes as the
-     * original one, but on a different memory position.
-     * @return the clone of the object
-     */
-    @Override
-    public SlideMazeState clone() {
-        SlideMazeState copy;
-        try {
-            copy = (SlideMazeState) super.clone();
-        } catch (CloneNotSupportedException e) {
-            LOGGER.error("Could not clone SlideMazeState.{}{}", System.lineSeparator(), e);
-            throw new RuntimeException(e);
-        }
-        copy.playingSurface = this.playingSurface.clone();
-        return copy;
-    }
-
-    /**
      * Checks if the ball has a wall in the given direction. A move is illegal, if the ball has a wall
      * in the {@link model.Directions.Direction Direction}, in which the move wanted to be made.
      * @param direction the {@link model.Directions.Direction Directions} in which the check will be made
@@ -162,6 +144,26 @@ public class SlideMazeState implements puzzle.State<Directions.Direction>{
      */
     public Cell cellAt(Position position){
         return playingSurface.at(position);
+    }
+
+    /**
+     * Gives back a new {@link SlideMazeState} object, with the same attributes as the
+     * original one, but on a different memory position.
+     * @return the clone of the object
+     */
+    @Override
+    public SlideMazeState clone() {
+        SlideMazeState copy;
+        try {
+            copy = (SlideMazeState) super.clone();
+            copy.playingSurface = this.playingSurface.clone();
+            copy.playerName = new String(this.playerName);
+            copy.nrOfSteps = this.nrOfSteps;
+        } catch (CloneNotSupportedException e) {
+            LOGGER.error("Could not clone SlideMazeState.{}{}", System.lineSeparator(), e);
+            throw new RuntimeException(e);
+        }
+        return copy;
     }
 
     @Override
