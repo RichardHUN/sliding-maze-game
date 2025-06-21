@@ -1,12 +1,17 @@
 package model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
+import java.util.Random;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SlideMazeStateTest {
+    private static final Logger LOGGER = LogManager.getLogger(SlideMazeStateTest.class);
 
     @Test
     void rightMove() {
@@ -119,6 +124,54 @@ class SlideMazeStateTest {
         //Then
         assertEquals(upMoveIllegal, state.getLegalMoves());
         assertFalse(state.isLegalMove(Directions.Direction.DOWN));
+    }
+
+    @Test
+    void nrOfSteps(){
+        //Given
+        var state = new SlideMazeState();
+        int initialRandomNrOfSteps = new Random().nextInt(18);
+        int randomNrOfSteps = initialRandomNrOfSteps;
+
+        //When
+        while (randomNrOfSteps > 0 ) {
+            Directions.Direction side =
+                    Directions.directions().stream().toList().get( new Random().nextInt(Directions.directions().size()) );
+            if (!state.isLegalMove(side)){
+                continue;
+            }
+            state.makeMove( side );
+            randomNrOfSteps--;
+        }
+
+        //Then
+        assertEquals(initialRandomNrOfSteps, state.getNrOfSteps());
+    }
+
+    @Test
+    void resetToInitial(){
+        //Given
+        SlideMazeState state = new SlideMazeState();
+        state.setPlayerName("randomNameOfARandomPlayer");
+        state.makeMove(Directions.Direction.RIGHT);
+        state.makeMove(Directions.Direction.DOWN);
+
+        //When
+        state.resetToInitialState();
+
+        //Then
+        assertEquals( Position.of(1,4), state.getBallPosition() );
+        try {
+            Field field = state.getClass().getDeclaredField("playingSurface");
+            field.setAccessible(true);
+
+            PlayingSurface playingSurface = (PlayingSurface) field.get(state);
+                assertEquals( Position.of(5,2), playingSurface.getGoalPosition());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            LOGGER.error("Couldn't access private field (playingSurface) through reflection.{}", e.getMessage());
+        }
+        assertEquals(0, state.getNrOfSteps());
+        assertEquals("no name given", state.getPlayerName());
     }
 
     @Test
