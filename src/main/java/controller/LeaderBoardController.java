@@ -21,6 +21,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Handles the happenings when the leaderboard scene is open.
+ */
 public class LeaderBoardController implements Initializable {
     private static final Logger LOGGER = LogManager.getLogger(LeaderBoardController.class);
     SlideMazeApplication application = new SlideMazeApplication();
